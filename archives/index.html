@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -21,7 +21,7 @@
   var CONFIG = {
     hostname: new URL('http://yoursite.com').hostname,
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Pisces',
     version: '7.7.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
@@ -46,12 +46,13 @@
   };
 </script>
 
-  <meta name="description" content="这里是ClickHouse的秘密基地, 会不定期更新ClickHouse的资讯杂谈、原理剖析和使用经验">
+  <meta name="description" content="这里是ClickHouse的秘密基地  ClickHouse的使用经验和原理剖析">
 <meta property="og:type" content="website">
-<meta property="og:title" content="ClickHouse的蝙蝠洞">
+<meta property="og:title" content="ClickHouse秘密基地">
 <meta property="og:url" content="http://yoursite.com/archives/index.html">
-<meta property="og:site_name" content="ClickHouse的蝙蝠洞">
-<meta property="og:description" content="这里是ClickHouse的秘密基地, 会不定期更新ClickHouse的资讯杂谈、原理剖析和使用经验">
+<meta property="og:site_name" content="ClickHouse秘密基地">
+<meta property="og:description" content="这里是ClickHouse的秘密基地  ClickHouse的使用经验和原理剖析">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="nauu">
 <meta property="article:tag" content="ClickHouse CH 黑马 数据库 多维分析">
 <meta name="twitter:card" content="summary">
@@ -68,7 +69,7 @@
   };
 </script>
 
-  <title>Archive | ClickHouse的蝙蝠洞</title>
+  <title>归档 | ClickHouse秘密基地</title>
   
 
 
@@ -112,14 +113,14 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">ClickHouse的蝙蝠洞</span>
+        <span class="site-title">ClickHouse秘密基地</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
   </div>
 
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
+    <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
       <span class="toggle-line toggle-line-middle"></span>
       <span class="toggle-line toggle-line-last"></span>
@@ -133,12 +134,12 @@
   <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
   </ul>
@@ -168,12 +169,12 @@
   <div class="post-block">
     <div class="posts-collapse">
       <div class="collection-title">
-        <span class="collection-header">Um..! 1 post. Keep on posting.</span>
+        <span class="collection-header">嗯..! 目前共计 1 篇日志。 继续努力。</span>
       </div>
 
       
     <div class="collection-year">
-      <h1 class="collection-header">2020</h1>
+      <h2 class="collection-header">2020</h2>
     </div>
 
   <article itemscope itemtype="http://schema.org/Article">
@@ -181,17 +182,17 @@
 
       <div class="post-meta">
         <time itemprop="dateCreated"
-              datetime="2020-01-04T11:57:55+08:00"
+              datetime="2020-01-04T14:19:00+08:00"
               content="2020-01-04">
           01-04
         </time>
       </div>
 
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/01/04/hello-world/" itemprop="url">
-            <span itemprop="name">Hello World</span>
+      <h3 class="post-title">
+          <a class="post-title-link" href="/2020/01/04/Origin-of-the-name/" itemprop="url">
+            <span itemprop="name">从ClickHouse的名字由来讲起</span>
           </a>
-      </h2>
+      </h3>
 
     </header>
   </article>
@@ -246,10 +247,10 @@
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
-          Table of Contents
+          文章目录
         </li>
         <li class="sidebar-nav-overview">
-          Overview
+          站点概览
         </li>
       </ul>
 
@@ -260,8 +261,10 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="nauu"
+      src="/images/wechat.jpg">
   <p class="site-author-name" itemprop="name">nauu</p>
-  <div class="site-description" itemprop="description">这里是ClickHouse的秘密基地, 会不定期更新ClickHouse的资讯杂谈、原理剖析和使用经验</div>
+  <div class="site-description" itemprop="description">这里是ClickHouse的秘密基地 <p> ClickHouse的使用经验和原理剖析</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -269,7 +272,7 @@
           <a href="/archives/">
         
           <span class="site-state-item-count">1</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-name">日志</span>
         </a>
       </div>
   </nav>
@@ -300,10 +303,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">nauu</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.0
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.0
   </div>
 
         
@@ -329,7 +332,7 @@
 <script src="/js/motion.js"></script>
 
 
-<script src="/js/schemes/muse.js"></script>
+<script src="/js/schemes/pisces.js"></script>
 
 
 <script src="/js/next-boot.js"></script>
@@ -338,6 +341,15 @@
 
 
   
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
 
 
 
