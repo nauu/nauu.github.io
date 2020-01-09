@@ -46,30 +46,34 @@
   };
 </script>
 
-  <meta name="description" content="这里是ClickHouse的秘密基地  不定期分享一些使用经验">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ClickHouse的秘密基地">
-<meta property="og:url" content="http://chsecret.com/index.html">
+  <meta name="description" content="&amp;emsp;最近看到一篇由Alexander Zaitsev撰写的，关于ClickHouse性能对比的文章(文末会有报告的原文地址)，觉得很有意思，所以拿来与大家分享一下。它有趣的地方在于，这是一篇针对性能对标的，性能对标测评。这算不算螳螂捕蝉，黄雀在后呢？&amp;emsp;这篇文章的对标场景，来自于ScyllaDB的一篇测评报告，而在这篇报告中，ScyllaDB历数了从2001年至今，NoSql数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在5000亿数据中大海捞针，需要怎样的硬件做支撑?">
+<meta property="og:url" content="http://chsecret.com/2020/01/09/500-billion-data-in-clickhouse/index.html">
 <meta property="og:site_name" content="ClickHouse的秘密基地">
-<meta property="og:description" content="这里是ClickHouse的秘密基地  不定期分享一些使用经验">
+<meta property="og:description" content="&amp;emsp;最近看到一篇由Alexander Zaitsev撰写的，关于ClickHouse性能对比的文章(文末会有报告的原文地址)，觉得很有意思，所以拿来与大家分享一下。它有趣的地方在于，这是一篇针对性能对标的，性能对标测评。这算不算螳螂捕蝉，黄雀在后呢？&amp;emsp;这篇文章的对标场景，来自于ScyllaDB的一篇测评报告，而在这篇报告中，ScyllaDB历数了从2001年至今，NoSql数据库">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://chsecret.com/images/macbook1.png">
+<meta property="article:published_time" content="2020-01-09T03:11:55.000Z">
+<meta property="article:modified_time" content="2020-01-09T10:37:37.805Z">
 <meta property="article:author" content="nauu">
-<meta property="article:tag" content="ClickHouse CH 黑马 数据库 多维分析 经验 用例 分享">
+<meta property="article:tag" content="ClickHouse Benchmark 性能测试 对比">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://chsecret.com/images/macbook1.png">
 
-<link rel="canonical" href="http://chsecret.com/">
+<link rel="canonical" href="http://chsecret.com/2020/01/09/500-billion-data-in-clickhouse/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: true,
-    isPost: false
+    isHome: false,
+    isPost: true
   };
 </script>
 
-  <title>ClickHouse的秘密基地</title>
+  <title>在5000亿数据中大海捞针，需要怎样的硬件做支撑? | ClickHouse的秘密基地</title>
   
 
 
@@ -174,10 +178,10 @@
             
 
   <div class="posts-expand">
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://chsecret.com/2020/01/09/500-billion-data-in-clickhouse/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -191,8 +195,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/09/500-billion-data-in-clickhouse/" class="post-title-link" itemprop="url">在5000亿数据中大海捞针，需要怎样的硬件做支撑?</a>
+          在5000亿数据中大海捞针，需要怎样的硬件做支撑?
         </h2>
 
         <div class="post-meta">
@@ -217,7 +220,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>&emsp;最近看到一篇由Alexander Zaitsev撰写的，关于ClickHouse性能对比的文章(文末会有报告的原文地址)，觉得很有意思，所以拿来与大家分享一下。它有趣的地方在于，这是一篇针对性能对标的，性能对标测评。这算不算螳螂捕蝉，黄雀在后呢？<br>&emsp;这篇文章的对标场景，来自于ScyllaDB的一篇测评报告，而在这篇报告中，ScyllaDB历数了从2001年至今，NoSql数据库性能达到的几个关键里程碑。而如今他们宣称，ScyllaDB能够在5000亿的数据量，以 10亿行/每秒 的性能处理数据。</p>
+        <p>&emsp;最近看到一篇由Alexander Zaitsev撰写的，关于ClickHouse性能对比的文章(文末会有报告的原文地址)，觉得很有意思，所以拿来与大家分享一下。它有趣的地方在于，这是一篇针对性能对标的，性能对标测评。这算不算螳螂捕蝉，黄雀在后呢？<br>&emsp;这篇文章的对标场景，来自于ScyllaDB的一篇测评报告，而在这篇报告中，ScyllaDB历数了从2001年至今，NoSql数据库性能达到的几个关键里程碑。而如今他们宣称，ScyllaDB能够在5000亿的数据量，以 10亿行/每秒 的性能处理数据。</p>
 <h1 id="ScyllaDB的测试方案"><a href="#ScyllaDB的测试方案" class="headerlink" title="ScyllaDB的测试方案"></a>ScyllaDB的测试方案</h1><p>&emsp;在ScyllaDB的测试方案中，他们模拟了物联网的使用场景:</p>
 <h2 id="测试数据"><a href="#测试数据" class="headerlink" title="测试数据"></a>测试数据</h2><p>&emsp;数据来自于家庭安装的温度传感器，这些温度传感器每隔 1 分钟读数一次。<br>所以，1百万个传感器，1年下来的数据量将会是：</p>
 <p>1,000,000 * 24 * 60 * 365 = 5256 亿</p>
@@ -330,114 +333,53 @@
 <h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><p>&emsp; 正如ScyllaDB的文章中所说，他们的测试并不是一场 apples to apples 的比较。同样的，我想Alexander拿ClickHouse做的这场比较，也不是针尖对麦芒的。它们两者之间有着太多的不同，它们使用了不同的数据模型、不同的架构等等。<br>但是通过这个案例的对比，大家可以认识到ClickHouse确实是经济和性能的完美平衡。如果你的业务也有类似的场景，使用ClickHouse将会是一种不错的选择。</p>
 <p><a href="https://www.altinity.com/blog/2020/1/1/clickhouse-cost-efficiency-in-action-analyzing-500-billion-rows-on-an-intel-nuc" target="_blank" rel="noopener">测试报告地址</a></p>
 
-      
     </div>
 
     
     
     
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>nauu
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://chsecret.com/2020/01/09/500-billion-data-in-clickhouse/" title="在5000亿数据中大海捞针，需要怎样的硬件做支撑?">http://chsecret.com/2020/01/09/500-billion-data-in-clickhouse/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/ClickHouse-Benchmark-%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95-%E5%AF%B9%E6%AF%94/" rel="tag"># ClickHouse Benchmark 性能测试 对比</a>
+          </div>
 
         
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://chsecret.com/2020/01/04/origin-of-the-name/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/wechat.jpg">
-      <meta itemprop="name" content="nauu">
-      <meta itemprop="description" content="这里是ClickHouse的秘密基地 <p> 不定期分享一些使用经验">
-    </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ClickHouse的秘密基地">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/04/origin-of-the-name/" class="post-title-link" itemprop="url">从ClickHouse的名字由来讲起</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-01-04 14:19:00" itemprop="dateCreated datePublished" datetime="2020-01-04T14:19:00+08:00">2020-01-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-05 23:09:41" itemprop="dateModified" datetime="2020-01-05T23:09:41+08:00">2020-01-05</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>&emsp;身边的朋友都知道，我正在写一本介绍ClickHouse的书籍，书名暂时叫做&lt;ClickHouse原理解析和开发实战&gt;，可以说2019年的绝大部分深夜，都与写作共度春宵了。现在写作临近尾声，终于有时间来扯些闲篇了。在日常生活中，我算是一个比较注重仪式感的人，所以喜欢研究每个事物的名字，总觉得它们的背后一定是有所寓意的。</p>
-<p>&emsp;目前在国内，关于ClickHouse方面的，有深度的介绍资料并不多，大多都是千篇一律，所以就更别提有它的八卦资讯了。你看隔壁的Hadoop动物园，讨论的是多么热火朝天，难道大家就不好奇为什么ClickHouse要叫做ClickHouse么？</p>
-<p>&emsp;至少我是好奇的，无奈在网上一直查不到相关的资料，心想这只有问问作者本人了。恰巧在参加ClickHouse的一次闭门会议时，有机会当面向作者请教。我就用我那纯正的中式口音问道:<br><strong>“What’s the meaning of the name, why we call it ClickHouse ？”</strong></p>
-<p>当 Ivan 耐心的在黑板上写下几个大字以后，一切豁然开朗。</p>
-<p><img src="/images/name.png" alt="clickhouse"></p>
-<p>看到了名字的含义，再结合ClickHouse的发展历程，一切就解释的通了。</p>
-<p>&emsp;我们都知道，ClickHouse由雏形发展至今，一共经历了4个阶段。它的初始设计目标，就是为了服务于自家的一款名叫yandex metrica的产品。</p>
-<p>&emsp;那metrica又是干什么的呢？简单来说，metrica是一款Web流量分析工具，基于前方探针采集回来的行为数据，进行一系列的数据分析，类似数仓(data warehouse)的OLAP分析。</p>
-<p>&emsp;而在探针采集的数据模型中，一次页面点击(click),会产生一个event事件。至此，整个系统的诉求就很清晰了，那就是基于页面的点击事件流，面向数据仓库进行OLAP分析。</p>
-<p>&emsp;所以ClickHouse这名字起的是不是既形象又贴切呢？</p>
-<p>&emsp;在知道了ClickHouse大名的由来以后，我还想接着聊聊它的小名，也就是缩写啦。<br>此时此刻，我的内心台词:</p>
-<p><strong>“这货真的不是内裤,我要为他正名…”</strong></p>
-<p>&emsp;不知道从何时开始，也不知道是何种原因，<strong>ck</strong> 就成为了ClickHouse的缩写，在圈内传开。当第一次看到有人用 ck 称呼ClickHouse的时候，我很是纳闷，心想: “这厮不是内裤么?”。</p>
-<p>&emsp;我们不妨看看英语单词的缩写，通常是怎么命名的。首先分析一下ClickHouse的组成，ClickHouse由<code>Click</code>和<code>House</code>两个单词组成，这个在英语里面称为组合词。对于组合词，除开一些特殊情况，通常的压缩规则是，选取每个单词的首字母。</p>
-<p>业界有很多基于这个规则的例子，比如:</p>
-<ul>
-<li><strong>HDFS</strong> - Hadoop Distributed File System</li>
-<li><strong>MR</strong> - MapReduce</li>
-<li><strong>ZK</strong> - ZooKeeper</li>
-<li><strong>ASF</strong> - Apache Software Foundation</li>
-<li><strong>DS</strong> - DolphinScheduler</li>
-</ul>
-<p>上述类似的例子数不胜数。<br>接下来，还有在ClickHouse源码中，官方对自己的简写称呼:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; For support old versions CH.</span><br><span class="line"> if (source_is_lost_stat.version &#x3D;&#x3D; -1)</span><br><span class="line"></span><br><span class="line"> ...</span><br><span class="line"></span><br><span class="line">  &#x2F;** Considering that CH uses UInt8 for representation of boolean values this function</span><br><span class="line"> ...</span><br></pre></td></tr></table></figure>
-
-<p>&emsp;所以，ClickHouse的正确缩写，应该是 <strong>CH</strong> <strong>CH</strong> <strong>CH</strong> ，重要的事情必须说三遍。 希望大家以后不要再叫他内裤了…</p>
-
-      
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/01/04/origin-of-the-name/" rel="prev" title="从ClickHouse的名字由来讲起">
+      <i class="fa fa-chevron-left"></i> 从ClickHouse的名字由来讲起
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
   
 
   </div>
-
-  
-
 
 
           </div>
@@ -488,6 +430,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ScyllaDB的测试方案"><span class="nav-number">1.</span> <span class="nav-text">ScyllaDB的测试方案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#测试数据"><span class="nav-number">1.1.</span> <span class="nav-text">测试数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#硬件配置"><span class="nav-number">1.2.</span> <span class="nav-text">硬件配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试目标"><span class="nav-number">1.3.</span> <span class="nav-text">测试目标</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ClickHouse的黑科技"><span class="nav-number">2.</span> <span class="nav-text">ClickHouse的黑科技</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#耳听为虚眼见为实"><span class="nav-number">3.</span> <span class="nav-text">耳听为虚眼见为实</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#写在最后"><span class="nav-number">4.</span> <span class="nav-text">写在最后</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
