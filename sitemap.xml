@@ -2,23 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://chsecret.com/about/index.html</loc>
+    <loc>http://chsecret.com/2020/01/10/clickhouse-magic/</loc>
     
-    <lastmod>2020-01-09T12:53:47.830Z</lastmod>
+    <lastmod>2020-01-10T19:42:20.777Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://chsecret.com/2020/01/09/500-billion-data-in-clickhouse/</loc>
     
-    <lastmod>2020-01-09T12:52:48.467Z</lastmod>
+    <lastmod>2020-01-10T19:41:31.137Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://chsecret.com/2020/01/04/origin-of-the-name/</loc>
     
-    <lastmod>2020-01-05T15:09:41.740Z</lastmod>
+    <lastmod>2020-01-10T19:41:18.517Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://chsecret.com/about/index.html</loc>
+    
+    <lastmod>2020-01-09T12:53:47.830Z</lastmod>
     
   </url>
   

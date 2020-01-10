@@ -46,30 +46,34 @@
   };
 </script>
 
-  <meta name="description" content="这里是ClickHouse的秘密基地  不定期分享一些使用经验">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ClickHouse的秘密基地">
-<meta property="og:url" content="http://chsecret.com/index.html">
+  <meta name="description" content="老板：“你听说过ClickHouse吗？简称叫CK！！！” 我：“听说过，不是个内裤品牌吗？谁没听说过？你想干什么?！！” 老板：“不是内裤！！ 是一款OLAP数据库，给你看，这是它的测试报告” 我：“假的吧，单机性能就这么高？怎么可能！！！” 老板：“不信你自己试试！！” 一番捣鼓之后 我：“。。。。。。。” 颠覆三观、陷入无限思考，心中只有三个字:  这是什么鬼！！ 上述是我的一段亲身经历。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ClickHouse为何如此之快？">
+<meta property="og:url" content="http://chsecret.com/2020/01/10/clickhouse-magic/index.html">
 <meta property="og:site_name" content="ClickHouse的秘密基地">
-<meta property="og:description" content="这里是ClickHouse的秘密基地  不定期分享一些使用经验">
+<meta property="og:description" content="老板：“你听说过ClickHouse吗？简称叫CK！！！” 我：“听说过，不是个内裤品牌吗？谁没听说过？你想干什么?！！” 老板：“不是内裤！！ 是一款OLAP数据库，给你看，这是它的测试报告” 我：“假的吧，单机性能就这么高？怎么可能！！！” 老板：“不信你自己试试！！” 一番捣鼓之后 我：“。。。。。。。” 颠覆三观、陷入无限思考，心中只有三个字:  这是什么鬼！！ 上述是我的一段亲身经历。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://chsecret.com/images/why1.png">
+<meta property="article:published_time" content="2020-01-10T15:22:00.000Z">
+<meta property="article:modified_time" content="2020-01-10T19:42:20.777Z">
 <meta property="article:author" content="nauu">
 <meta property="article:tag" content="ClickHouse CH 黑马 数据库 多维分析 经验 用例 分享">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://chsecret.com/images/why1.png">
 
-<link rel="canonical" href="http://chsecret.com/">
+<link rel="canonical" href="http://chsecret.com/2020/01/10/clickhouse-magic/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: true,
-    isPost: false
+    isHome: false,
+    isPost: true
   };
 </script>
 
-  <title>ClickHouse的秘密基地</title>
+  <title>ClickHouse为何如此之快？ | ClickHouse的秘密基地</title>
   
 
 
@@ -174,10 +178,10 @@
             
 
   <div class="posts-expand">
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://chsecret.com/2020/01/10/clickhouse-magic/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -191,8 +195,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/10/clickhouse-magic/" class="post-title-link" itemprop="url">ClickHouse为何如此之快？</a>
+          ClickHouse为何如此之快？
         </h2>
 
         <div class="post-meta">
@@ -223,7 +226,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>老板：</strong>“你听说过ClickHouse吗？简称叫CK！！！”</p>
+        <p><strong>老板：</strong>“你听说过ClickHouse吗？简称叫CK！！！”</p>
 <p><strong>我：</strong>“听说过，不是个内裤品牌吗？谁没听说过？你想干什么?！！”</p>
 <p><strong>老板：</strong>“不是内裤！！ 是一款OLAP数据库，给你看，这是它的测试报告”</p>
 <p><strong>我：</strong>“假的吧，单机性能就这么高？怎么可能！！！”</p>
@@ -233,184 +236,114 @@
 <p><strong>颠覆三观、陷入无限思考，心中只有三个字:</strong> </p>
 <p><strong>这是什么鬼！！</strong></p>
 <p>上述是我的一段亲身经历。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/01/10/clickhouse-magic/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
+<a id="more"></a>
+
+<p>&emsp;很多初识CH的人，内心都会经历这么几个阶段：<br>初识，会被它那惊叹的性能所吸引；<br>疑惑，开始质疑它的真实性；<br>困惑，在亲自论证了可靠性后，身体虽然是相信了，但内心依然觉得不可思议，不明就里。</p>
+<p>于是乎，<strong>为什么ClickHouse这么快?</strong> 渐渐成了一个不解之谜。</p>
+<p><strong>作为一个拥有ClickHouse信仰标签的忠实粉丝</strong>，我自然也是追寻谜底的一份子。在我苦苦寻觅许久之后，今天，终于被我找到了答案。所以特地拿来与各位分享，谜底就在下面：<br><img src="/images/why1.png" alt="clickhouse"></p>
+<p>翻译过来的意思是:<br><strong>这是纯魔法，是由前苏联科学家提供的技术.他们曾经用来制造火箭.</strong></p>
+<p>看到没?！ 这就是ClickHouse的黑魔法。</p>
+<p>&emsp;好吧，这其实是我今天刚看到的一则笑话，来自于中科院计算所博士，郑天祺 (Amos Bird)，同时他也是一名ClickHouse的Committer。</p>
+<p>&emsp;虽然刚才的谜底是假的，但疑问是真真切切存在的，<strong>为什么ClickHouse这么快？</strong></p>
+<p>已经有很多人，对这个问题做出过科学合理的解释。<br>比如有人说，因为ClickHouse是列存数据库，所以快；<br>也有人说，因为ClickHouse使用了向量化引擎，所以快。</p>
+<p>这些解释都站得住脚，但是依然不能消除我的疑问。因为这些技术并不是秘密，世面上有很多数据库同样使用了这些技术，但是依然被ClickHouse秒杀呀？</p>
+<p>&emsp;<strong>所以，今天我想从另外一个角度，来探讨一下ClickHouse的黑魔法，它到底是什么。</strong></p>
+<p>要找到问题的谜底，其实有一个很简单的办法，那就是听听作者们自己是怎么说的呗。</p>
+<p><strong>画外音：</strong>“说的轻巧，去哪里找作者倾诉呢？”</p>
+<p>所以说勤奋的人们总是容易被幸运眷顾，你看这不:<br>恰好，在2019的年末，在北京举行了 中国大数据技术大会（BDTC 2019）；<br>恰好又，在这个大会又邀请了 ClickHouse项目的创始人兼开源社区创始人，<strong>Alexey Milovidov</strong>；<br>恰恰好又，<strong>Alexey Milovidov</strong> 在大会上做了一次主题分享；<br>恰恰恰好又，这个分享主题就叫做 <strong>The Secrets of ClickHouse Performance Optimizations</strong>。</p>
+<p>各位说说，怎么就这么巧呢？简直做梦都要笑醒的节奏啊。</p>
+<p>&emsp;既然作者已经做了分享，那我就从这次分享出发，对ClickHouse的黑魔法做一番分析总结吧。(文末会附上Alexey Milovidov的分享视频)</p>
+<p>开篇伊始，Alexey Milovidov就抛出了一个灵魂的质问:</p>
+<p>做设计的原则，到底应该是 <strong>自顶向下</strong> 的去设计，还是应该 <strong>自下而上</strong> 的去设计 ？</p>
+<p>在传统观念中，或者说在我的观念中，自然是 <strong>自顶向下</strong>的，做架构设计首先自然做的是顶层设计:</p>
+<ul>
+<li>事先应该做高层次的抽象设计;</li>
+<li>规划好各个模块的职责、切分的界面；</li>
+<li>分配好工程结构、包结构，最好再来能一些设计图，等等。</li>
+</ul>
+<p>而ClickHouse的设计，则采用了 <strong>自下而上</strong>。</p>
+<p>ClickHouse的原型系统早在2008年就诞生了(有机会可以专门写一篇,聊聊关于ClickHouse的诞生历程),<br>在诞生之初，它并没有宏伟的规划。相反，它的目的很单纯，就是希望能以最快的速度进行GROUP BY查询和过滤。</p>
+<p>他们是如何实践 <strong>自下而上</strong> 设计的呢？</p>
+<p><strong>着眼硬件，先想后做</strong></p>
+<p>从硬件功能层面着手设计，在设计伊始，就至少需要想清楚这么几个问题：</p>
+<ol>
+<li>我们将要使用的硬件水平是怎样的？包括CPU、内存、硬盘、网络等等；</li>
+<li>在这样的硬件上，我们需要达到怎样的性能？包括延迟、吞吐量等等;</li>
+<li>我们准备使用怎样的数据结构？包括String、HashTable、Vector等等；</li>
+<li>选择的这些数据结构，在我们的硬件上会如何工作？</li>
+</ol>
+<p>如果你能想清楚上面的问题，那么在动手实现功能之前，就已经能够计算出粗略的性能了。</p>
+<p>所以，基于将硬件功效最大化的目的，ClickHouse会在内存中进行GROUP BY，并且使用HashTable装载数据。<br>于此同时，他们非常在意CPU L3级别的缓存，因为一次L3 cache miss会带来70~100纳秒的延迟。<br>这意味着，在单核CPU上，它会浪费4000万/每秒的运算；而在一个32线程的CPU上，则可能会浪费5亿/每秒的运算。</p>
+<p>所以别小看这些细节，一点一滴的将它们累加起来，数据是非常可观的。也正因为注意了这些细节，所以ClickHouse在基准查询中，能做到1.75亿/每秒的数据扫描性能。</p>
+<p><strong>算法在前，抽象在后</strong></p>
+<p>最近常听人念叨，<strong>“有时候，选择比努力更重要”。</strong> 确实，路线选错了，再努力也是白搭。</p>
+<p>在ClickHouse的底层实现中，经常会面对这些场景：<br>字符串子串查询；<br>数组排序；<br>使用HashTable等。</p>
+<p>如何才能在实现性能的最大化呢？算法的选择是重中之重！！！</p>
+<p>以字符串为例，有一本专门讲解字符串搜索的书，叫做 “Handbook of Exact String Matching Algorithms”，这本书列举了35种常见的字符串搜索算法，你猜ClickHouse使用了其中的哪一种？</p>
+<p><strong>一种都没用！！</strong> 为什么？因为性能不够快。</p>
+<p>在字符串搜索方面，针对不同的场景，ClickHouse最终选择了这些算法：</p>
+<p>对于常量，使用<strong>Volnitsky</strong>算法；<br>对于非常量，使用CPU的向量化执行<strong>SIMD</strong>，暴力优化;<br>正则匹配使用<strong>re2</strong>和<strong>hyperscan</strong>算法。</p>
+<p><strong>勇于尝鲜，不行就换</strong></p>
+<p>除了字符串之外，其余的场景也与它类似，ClickHouse会使用最合适、最快的算法。<br>如果世面上出现了，号称性能强大的新算法，他也会将其纳入，进行验证。如果效果可行，就保留使用；如果性能不尽人意，就将其抛弃。</p>
+<p><strong>特定场景，特殊优化</strong></p>
+<p>针对在同一个场景的，不同的状况，选择使用不同的实现方式，尽可能的将性能最大化。关于这一点，其实在刚才介绍字符串查询时候，针对不同场景选择不同的算法就能体现了。<br>类似的例子还有很多，例如去重计数uniqCombined函数，根据数据量的不同会选择不同的算法。当数据量较小的时候，会选择Array保存;当数据量中等时候，则会选择HashSet;而当数据量很大的时候,则使用HyperLogLog算法。</p>
+<p>包括对于数据结构比较清晰的场景，会通过代码生成技术，实现循环展开，以减少循环次数。</p>
+<p>还包括大家熟知的大杀器，向量化执行了。SIMD被广泛的应用于文本转换、数据过滤、数据解压和JSON转换等场景。利用寄存器暴力优化，相较于单纯的使用CPU而言，也算是一种降维打击了。</p>
+<p><strong>持续测试，持续改进</strong></p>
+<p>如果只是单纯的，在上述的细节上下功夫，还不足以构建出如此强大的ClickHouse，这里还需要拥有一个能够持续验证、持续改进的机制。<br>由于Yandex的天然优势，ClickHouse经常会使用真实的数据做测试，这一点很好的保证了测试场景的真实性。于此同时，ClickHouse也是我见过发版速度最快的开源软件了，差不多每个月都能发布一个版本，没有一个可靠的持续集成环境，这一点也是做不到的。<br>也正因为拥有这样的发版频率，他们能够快速迭代、快速改进。</p>
+<p>好了，上述这些，就是我对Alexey Milovidov这次分享的一些总结和个人理解了。</p>
+<p>最后，就以ClickHouse的口号，作为结束吧：</p>
+<p><strong>The ClickHouse Style:</strong></p>
+<p><strong>As efficient as possible</strong></p>
+<p><strong>As fast as possible</strong></p>
+<p>正如口号所言，他们做到了。</p>
+<p>所以，ClickHouse的黑魔法并不是一项单一的技术，而是一种<strong>自底向上</strong>的，追求极致性能的设计思路。</p>
+<p>请自带梯子:<br><a href="https://www.youtube.com/watch?v=ZOZQCQEtrz8&feature=youtu.be" target="_blank" rel="noopener">The Secrets of ClickHouse Performance Optimizations</a></p>
+
     </div>
 
     
     
     
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>nauu
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://chsecret.com/2020/01/10/clickhouse-magic/" title="ClickHouse为何如此之快？">http://chsecret.com/2020/01/10/clickhouse-magic/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
         
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://chsecret.com/2020/01/09/500-billion-data-in-clickhouse/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/wechat.jpg">
-      <meta itemprop="name" content="nauu">
-      <meta itemprop="description" content="这里是ClickHouse的秘密基地 <p> 不定期分享一些使用经验">
-    </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ClickHouse的秘密基地">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/09/500-billion-data-in-clickhouse/" class="post-title-link" itemprop="url">在5000亿数据中大海捞针，需要怎样的硬件做支撑?</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-01-09 11:11:55" itemprop="dateCreated datePublished" datetime="2020-01-09T11:11:55+08:00">2020-01-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-11 03:41:31" itemprop="dateModified" datetime="2020-01-11T03:41:31+08:00">2020-01-11</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>&emsp;最近看到一篇由Alexander Zaitsev撰写的，关于ClickHouse性能对比的文章(文末会有报告的原文地址)，觉得很有意思，所以拿来与大家分享一下。它有趣的地方在于，这是一篇针对性能对标的，性能对标测评。这算不算螳螂捕蝉，黄雀在后呢？<br>&emsp;这篇文章的对标场景，来自于ScyllaDB的一篇测评报告，而在这篇报告中，ScyllaDB历数了从2001年至今，NoSql数据库性能达到的几个关键里程碑。而如今他们宣称，ScyllaDB能够在5000亿的数据量，以 10亿行/每秒 的性能处理数据。</p>
-<h1 id="ScyllaDB的测试方案"><a href="#ScyllaDB的测试方案" class="headerlink" title="ScyllaDB的测试方案"></a>ScyllaDB的测试方案</h1><p>&emsp;在ScyllaDB的测试方案中，他们模拟了物联网的使用场景:</p>
-<h2 id="测试数据"><a href="#测试数据" class="headerlink" title="测试数据"></a>测试数据</h2><p>&emsp;数据来自于家庭安装的温度传感器，这些温度传感器每隔 1 分钟读数一次。<br>所以，1百万个传感器，1年下来的数据量将会是：</p>
-<p>1,000,000 * 24 * 60 * 365 = 5256 亿</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/01/09/500-billion-data-in-clickhouse/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/01/09/500-billion-data-in-clickhouse/" rel="prev" title="在5000亿数据中大海捞针，需要怎样的硬件做支撑?">
+      <i class="fa fa-chevron-left"></i> 在5000亿数据中大海捞针，需要怎样的硬件做支撑?
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://chsecret.com/2020/01/04/origin-of-the-name/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/wechat.jpg">
-      <meta itemprop="name" content="nauu">
-      <meta itemprop="description" content="这里是ClickHouse的秘密基地 <p> 不定期分享一些使用经验">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ClickHouse的秘密基地">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/04/origin-of-the-name/" class="post-title-link" itemprop="url">从ClickHouse的名字由来讲起</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-01-04 14:19:00" itemprop="dateCreated datePublished" datetime="2020-01-04T14:19:00+08:00">2020-01-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-11 03:41:18" itemprop="dateModified" datetime="2020-01-11T03:41:18+08:00">2020-01-11</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>&emsp;身边的朋友都知道，我正在写一本介绍ClickHouse的书籍，书名暂时叫做&lt;ClickHouse原理解析和开发实战&gt;，可以说2019年的绝大部分深夜，都与写作共度春宵了。现在写作临近尾声，终于有时间来扯些闲篇了。在日常生活中，我算是一个比较注重仪式感的人，所以喜欢研究每个事物的名字，总觉得它们的背后一定是有所寓意的。</p>
-<p>&emsp;目前在国内，关于ClickHouse方面的，有深度的介绍资料并不多，大多都是千篇一律，所以就更别提有它的八卦资讯了。你看隔壁的Hadoop动物园，讨论的是多么热火朝天，难道大家就不好奇为什么ClickHouse要叫做ClickHouse么？</p>
-<p>&emsp;至少我是好奇的，无奈在网上一直查不到相关的资料，心想这只有问问作者本人了。恰巧在参加ClickHouse的一次闭门会议时，有机会当面向作者请教。我就用我那纯正的中式口音问道:<br><strong>“What’s the meaning of the name, why we call it ClickHouse ？”</strong></p>
-<p>当 Ivan 耐心的在黑板上写下几个大字以后，一切豁然开朗。</p>
-<p><img src="/images/name.png" alt="clickhouse"></p>
-<p>看到了名字的含义，再结合ClickHouse的发展历程，一切就解释的通了。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/01/04/origin-of-the-name/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
   </article>
   
   
   
 
   </div>
-
-  
-
 
 
           </div>
