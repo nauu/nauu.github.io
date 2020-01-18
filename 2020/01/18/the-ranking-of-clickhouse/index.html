@@ -46,22 +46,25 @@
   };
 </script>
 
-  <meta name="description" content="&amp;emsp;身边的朋友都知道，我正在写一本介绍ClickHouse的书籍，书名暂时叫做&lt;ClickHouse原理解析和开发实战&gt;，可以说2019年的绝大部分深夜，都与写作共度春宵了。现在写作临近尾声，终于有时间来扯些闲篇了。在日常生活中，我算是一个比较注重仪式感的人，所以喜欢研究每个事物的名字，总觉得它们的背后一定是有所寓意的。 &amp;emsp;目前在国内，关于ClickHouse方面的，">
+  <meta name="description" content="我：“老大，最近ClickHouse很火啊，咱不试试吗？？” 中台架构师：“哦？ CK吗？ 那是个啥玩意呀？？” 我：“是CH！！一款OLAP数据库！！” 中台架构师：“是数据库啊！！DB-Engines排名多少？？ “ 我：“。。。。。。” 上述又是我的一段亲身经历。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="从ClickHouse的名字由来讲起">
-<meta property="og:url" content="http://chsecret.com/2020/01/04/origin-of-the-name/index.html">
+<meta property="og:title" content="在DB-Engines的排名不高，ClickHouse还值得关注吗？">
+<meta property="og:url" content="http://chsecret.com/2020/01/18/the-ranking-of-clickhouse/index.html">
 <meta property="og:site_name" content="ClickHouse的秘密基地">
-<meta property="og:description" content="&amp;emsp;身边的朋友都知道，我正在写一本介绍ClickHouse的书籍，书名暂时叫做&lt;ClickHouse原理解析和开发实战&gt;，可以说2019年的绝大部分深夜，都与写作共度春宵了。现在写作临近尾声，终于有时间来扯些闲篇了。在日常生活中，我算是一个比较注重仪式感的人，所以喜欢研究每个事物的名字，总觉得它们的背后一定是有所寓意的。 &amp;emsp;目前在国内，关于ClickHouse方面的，">
+<meta property="og:description" content="我：“老大，最近ClickHouse很火啊，咱不试试吗？？” 中台架构师：“哦？ CK吗？ 那是个啥玩意呀？？” 我：“是CH！！一款OLAP数据库！！” 中台架构师：“是数据库啊！！DB-Engines排名多少？？ “ 我：“。。。。。。” 上述又是我的一段亲身经历。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://chsecret.com/images/name.png">
-<meta property="article:published_time" content="2020-01-04T06:19:00.000Z">
-<meta property="article:modified_time" content="2020-01-10T19:41:18.517Z">
+<meta property="og:image" content="http://chsecret.com/images/metro.png">
+<meta property="og:image" content="http://chsecret.com/images/rank.png">
+<meta property="og:image" content="http://chsecret.com/images/top10.png">
+<meta property="og:image" content="http://chsecret.com/images/bar.png">
+<meta property="article:published_time" content="2020-01-18T14:26:41.000Z">
+<meta property="article:modified_time" content="2020-01-18T18:31:19.880Z">
 <meta property="article:author" content="nauu">
-<meta property="article:tag" content="ClickHouse CH 黑马 数据库 多维分析 经验 用例 分享">
+<meta property="article:tag" content="clickhouse rank 排名 流行度">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://chsecret.com/images/name.png">
+<meta name="twitter:image" content="http://chsecret.com/images/metro.png">
 
-<link rel="canonical" href="http://chsecret.com/2020/01/04/origin-of-the-name/">
+<link rel="canonical" href="http://chsecret.com/2020/01/18/the-ranking-of-clickhouse/">
 
 
 <script id="page-configurations">
@@ -73,7 +76,7 @@
   };
 </script>
 
-  <title>从ClickHouse的名字由来讲起 | ClickHouse的秘密基地</title>
+  <title>在DB-Engines的排名不高，ClickHouse还值得关注吗？ | ClickHouse的秘密基地</title>
   
 
 
@@ -182,7 +185,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://chsecret.com/2020/01/04/origin-of-the-name/">
+    <link itemprop="mainEntityOfPage" href="http://chsecret.com/2020/01/18/the-ranking-of-clickhouse/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/wechat.jpg">
@@ -195,7 +198,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          从ClickHouse的名字由来讲起
+          在DB-Engines的排名不高，ClickHouse还值得关注吗？
         </h2>
 
         <div class="post-meta">
@@ -205,14 +208,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-01-04 14:19:00" itemprop="dateCreated datePublished" datetime="2020-01-04T14:19:00+08:00">2020-01-04</time>
+              <time title="创建时间：2020-01-18 22:26:41" itemprop="dateCreated datePublished" datetime="2020-01-18T22:26:41+08:00">2020-01-18</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-11 03:41:18" itemprop="dateModified" datetime="2020-01-11T03:41:18+08:00">2020-01-11</time>
+                <time title="修改时间：2020-01-19 02:31:19" itemprop="dateModified" datetime="2020-01-19T02:31:19+08:00">2020-01-19</time>
               </span>
 
           
@@ -226,34 +229,71 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>&emsp;身边的朋友都知道，我正在写一本介绍ClickHouse的书籍，书名暂时叫做&lt;ClickHouse原理解析和开发实战&gt;，可以说2019年的绝大部分深夜，都与写作共度春宵了。现在写作临近尾声，终于有时间来扯些闲篇了。在日常生活中，我算是一个比较注重仪式感的人，所以喜欢研究每个事物的名字，总觉得它们的背后一定是有所寓意的。</p>
-<p>&emsp;目前在国内，关于ClickHouse方面的，有深度的介绍资料并不多，大多都是千篇一律，所以就更别提有它的八卦资讯了。你看隔壁的Hadoop动物园，讨论的是多么热火朝天，难道大家就不好奇为什么ClickHouse要叫做ClickHouse么？</p>
-<p>&emsp;至少我是好奇的，无奈在网上一直查不到相关的资料，心想这只有问问作者本人了。恰巧在参加ClickHouse的一次闭门会议时，有机会当面向作者请教。我就用我那纯正的中式口音问道:<br><strong>“What’s the meaning of the name, why we call it ClickHouse ？”</strong></p>
-<p>当 Ivan 耐心的在黑板上写下几个大字以后，一切豁然开朗。</p>
-<p><img src="/images/name.png" alt="clickhouse"></p>
-<p>看到了名字的含义，再结合ClickHouse的发展历程，一切就解释的通了。</p>
+        <p><strong>我：</strong>“老大，最近ClickHouse很火啊，咱不试试吗？？”</p>
+<p><strong>中台架构师：</strong>“哦？ CK吗？ 那是个啥玩意呀？？”</p>
+<p><strong>我：</strong>“是CH！！一款OLAP数据库！！”</p>
+<p><strong>中台架构师：</strong>“是数据库啊！！DB-Engines排名多少？？ “</p>
+<p><strong>我：</strong>“。。。。。。”</p>
+<p>上述又是我的一段亲身经历。</p>
 <a id="more"></a>
 
-<p>&emsp;我们都知道，ClickHouse由雏形发展至今，一共经历了4个阶段。它的初始设计目标，就是为了服务于自家的一款名叫yandex metrica的产品。</p>
-<p>&emsp;那metrica又是干什么的呢？简单来说，metrica是一款Web流量分析工具，基于前方探针采集回来的行为数据，进行一系列的数据分析，类似数仓(data warehouse)的OLAP分析。</p>
-<p>&emsp;而在探针采集的数据模型中，一次页面点击(click),会产生一个event事件。至此，整个系统的诉求就很清晰了，那就是基于页面的点击事件流，面向数据仓库进行OLAP分析。</p>
-<p>&emsp;所以ClickHouse这名字起的是不是既形象又贴切呢？</p>
-<p>&emsp;在知道了ClickHouse大名的由来以后，我还想接着聊聊它的小名，也就是缩写啦。<br>此时此刻，我的内心台词:</p>
-<p><strong>“这货真的不是内裤,我要为他正名…”</strong></p>
-<p>&emsp;不知道从何时开始，也不知道是何种原因，<strong>ck</strong> 就成为了ClickHouse的缩写，在圈内传开。当第一次看到有人用 ck 称呼ClickHouse的时候，我很是纳闷，心想: “这厮不是内裤么?”。</p>
-<p>&emsp;我们不妨看看英语单词的缩写，通常是怎么命名的。首先分析一下ClickHouse的组成，ClickHouse由<code>Click</code>和<code>House</code>两个单词组成，这个在英语里面称为组合词。对于组合词，除开一些特殊情况，通常的压缩规则是，选取每个单词的首字母。</p>
-<p>业界有很多基于这个规则的例子，比如:</p>
+<p>最近有朋友问我：”你是基于什么根据，如何判断出ClickHouse要火的呢？”</p>
+<p>我回答道：”其实很简单呀，你看看周边的人都是在怎么学ClickHouse呀”<br>接着，我拿出手机，给他看了下面这张照片。</p>
+<p><img src="/images/metro.png" alt="clickhouse"></p>
+<p>“你看，人家都在地铁上学习ClickHouse了！！！ 你再不学，就要落伍了！！！”<br>我的朋友在看过这张照片之后，意味深长的点了点头。</p>
+<p>在搞定了我的朋友之后，现在言归正传，聊一聊排行榜的问题。</p>
+<p>在我们的生活中，排行榜可谓是无处不在，因为人的天性就喜欢比较，而排行榜就是一个最为简单易用的比较工具。<br>有句玩笑不是这么说的嘛： “什么是幸福感？ 幸福感就是经过比较以后，发现你比别人过的好”</p>
+<p>玩笑归玩笑，排行比较确实是有用处的，比如：</p>
+<p><em>使用比较之前</em><br><strong>中台架构师：</strong>“我来介绍一下，这位新招的架构师非常厉害，他对中台的理解已经深入骨髓”</p>
+<p><strong>我：</strong>“茫然，一脸不屑”</p>
+<p><em>使用比较之后</em><br><strong>中台架构师：</strong>“我来介绍一下，这位新招的架构师非常厉害，阿里P15，全球排名前10，他对中台的理解已经深入骨髓”</p>
+<p><strong>我：</strong>“震惊，一脸崇拜”</p>
+<p><strong>你看，通过横向比较，不用使用多余的介绍，就能有效的传递信息。同时，还容易使他人产生共鸣，做出预期的判断。</strong></p>
+<p>所以在营销领域，产品排名是一个非常重要的指标，毫不夸张的说它能关乎到一款产品的生死。越是靠前的排名，用户使用你的几率就越大；而使用的用户越多，在产品靠谱的情况下，又能反哺排名从而形成一个良性循环。<br>而对于发布排行的平台而言，平台的公信力越高，排名的背书能力也就随之越大，对于同一类型的产品，用户更倾向选择排名靠前的。<br>所以现在我们身边，能看到各种榜单，电商平台的最畅销XXX TOP10、歌曲榜单TOP 10、电视剧TOP 10，数不胜数。</p>
+<p><strong>这些榜单潜移默化的影响着我们的选择行为。</strong></p>
+<p>铺垫了那么多，现在该聊到DB-Engines排名了吧？</p>
+<p>什么是DB-Engines排名呢？DB-Engines排名就是一个数据库领域的流行度榜单，它对全球范围内的300多款数据库进行了排名，榜单排名每月更新一次。如果某个数据库的排名越靠前，则表示它越流行。<br>所以在很多技术选型的场合，都会引用DB-Engines的排名数据，用于论证技术的成熟度和流行度。</p>
+<p>既然如此，那我们看看ClickHouse在DB-Engines的榜单排名：<br><img src="/images/rank.png" alt="clickhouse"></p>
+<p><strong>截止到2020年1月</strong><br>按所有类型统计，在350款数据库中，<strong>排名78</strong>，较上一个月上升<strong>108位</strong></p>
+<p>按关系模型统计，在139款关系型数据库中，<strong>排名41</strong>，较上一个月上升<strong>52位</strong></p>
+<p>再看看按所有类型统计的TOP 10：<br><img src="/images/top10.png" alt="clickhouse"></p>
+<p>如果你是一位决策者，在看到这样的榜单对比后，还会选择ClickHouse吗？ 不论推荐者说的如何天花乱坠，你估计早已索然无味了吧！！<br>这也是为何在开篇，我会被中台架构师怼的无言以对。</p>
+<p><strong>然而，作为一个拥有ClickHouse信仰贴纸的斗士，我当然不会就此轻易的放弃。</strong></p>
+<p>既然是排行榜单，总得有个排名依据吧？咱得讲道理呀？所以，接下来就看看DB-Engines的排名规则。</p>
+<p>虽然DB-Engines在它的官网上并没有公布排名打分算法，但还是列举了算法使用到的一些参数维度，以及参数的数据来源，它们分别是：</p>
 <ul>
-<li><strong>HDFS</strong> - Hadoop Distributed File System</li>
-<li><strong>MR</strong> - MapReduce</li>
-<li><strong>ZK</strong> - ZooKeeper</li>
-<li><strong>ASF</strong> - Apache Software Foundation</li>
-<li><strong>DS</strong> - DolphinScheduler</li>
+<li><p><strong>在网站被提及的次数</strong><br>分别在Google、Bing和Yandex进行搜索，以搜索引擎中的结果数作为衡量依据。例如查询”ClickHouse database”，记录找到的结果数量。</p>
+</li>
+<li><p><strong>在互联网的普遍兴趣</strong><br>以Google Trends趋势中的搜索频率作为衡量依据。</p>
+</li>
+<li><p><strong>在技术社区被讨论的频率</strong><br>分别在Stack Overflow 和 DBA Stack Exchange网站进行统计，以技术社区中 Q&amp;A 提问和回答数量作为衡量依据。</p>
+</li>
+<li><p><strong>在招聘岗位信息被提及的次数</strong><br>分别在 Indeed 和 Simply Hired网站进行统，作为衡量依据。</p>
+</li>
+<li><p><strong>在职场社交作为用户资料被提及的次数</strong><br>分别在LinkedIn 和 Upwork统计作为用户资料被提及的数量，作为衡量依据。</p>
+</li>
+<li><p><strong>在社交网络被提及的次数</strong><br>在Twitter统计相关推文的数量，作为衡量依据。</p>
+</li>
 </ul>
-<p>上述类似的例子数不胜数。<br>接下来，还有在ClickHouse源码中，官方对自己的简写称呼:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; For support old versions CH.</span><br><span class="line"> if (source_is_lost_stat.version &#x3D;&#x3D; -1)</span><br><span class="line"></span><br><span class="line"> ...</span><br><span class="line"></span><br><span class="line">  &#x2F;** Considering that CH uses UInt8 for representation of boolean values this function</span><br><span class="line"> ...</span><br></pre></td></tr></table></figure>
-
-<p>&emsp;所以，ClickHouse的正确缩写，应该是 <strong>CH</strong> <strong>CH</strong> <strong>CH</strong> ，重要的事情必须说三遍。 希望大家以后不要再叫他内裤了…</p>
+<p>在看过这些规则依据和它们的数据来源之后，不知各位看官有何感觉？<br>由于不知道参数的权重，我且当它们的权重差不多了，我有这么几点感受:</p>
+<ul>
+<li><p><strong>对中国市场极不友好</strong><br>这些维度参数的数据来源，基本排除了来自中国市场的数据，”你说啥？ Twitter？ 没听过呢！！！”</p>
+</li>
+<li><p><strong>缺乏细分市场排名</strong><br>同场竞技，定位越细分，排名越吃亏。如果数据库是个多面手，很多领域都能使用，那么自然拥有更高的用户基数。一旦用户基数高了，相关的指标数据自然也就高了。</p>
+</li>
+</ul>
+<p>我常用买保险来举例这种现象，保险产品有很多形式划分：<br>最常见一种叫复合保险，就是你只用买这一种保险，它已经包含了常见的重疾、住院医疗甚至寿险，十分方便；<br>与复合险相对的是单一险种，你买重疾险就只有重疾的内容、你买寿险就只有寿险的内容。</p>
+<p>买哪一种形式的保险，完全取决与你的诉求。如果求省事，你可以买中庸的复合险；但如果你是一个追求极致，要求最划算，杠杆比最大化的人，你很可能会单独的购买每一种类型，组合使用。因为它们相比复合险，往往拥有更便宜的价格和更高的保额。</p>
+<p>类比到数据库，那就是在某一方面拥有极致性能的数据库，通常都不是多面手。选择使用哪种数据库，需要取决你的场景。</p>
+<ul>
+<li><p><strong>历史越久，优势越大</strong><br>历史越悠久，面世时间越早的数据库拥有更多的用户基础，且由于种种原因（历史包袱等），由于切换使用新技术的成本问题，这些用户会继续选择使用这些数据库。</p>
+</li>
+<li><p><strong>配套不齐，讨论更多</strong><br>假设一下，如果在Stack Overflow提问的数量多，你觉得可能是什么原因？<br>流行度高，使用的人多自然是一种原因。但是还有一种可能，是这个数据库的周边配套太差了。由于文档不全、社区不活跃，导致在产品官网找不到解决途径，在社区提问也无人响应，那么只有求助于Stack Overflow这类渠道了。</p>
+</li>
+</ul>
+<p>即便规则对ClickHouse如此不利，DB-Engines排名依然侧面显示出了它的迅猛的发展态势：<br><img src="/images/bar.png" alt="clickhouse"></p>
+<p>所以说，对于排行榜而言，不可不信也不可尽信，大家需要有自己的主观判断，不能只看一个排行数字。</p>
+<p>最后，对于ClickHouse的选择判断，到底应该如何抉择呢？ 我想，那就Follow your heart吧 ：）。</p>
 
     </div>
 
@@ -269,7 +309,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://chsecret.com/2020/01/04/origin-of-the-name/" title="从ClickHouse的名字由来讲起">http://chsecret.com/2020/01/04/origin-of-the-name/</a>
+    <a href="http://chsecret.com/2020/01/18/the-ranking-of-clickhouse/" title="在DB-Engines的排名不高，ClickHouse还值得关注吗？">http://chsecret.com/2020/01/18/the-ranking-of-clickhouse/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -279,17 +319,20 @@
 
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/clickhouse-rank-%E6%8E%92%E5%90%8D-%E6%B5%81%E8%A1%8C%E5%BA%A6/" rel="tag"># clickhouse rank 排名 流行度</a>
+          </div>
 
         
 
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2020/01/09/500-billion-data-in-clickhouse/" rel="next" title="在5000亿数据中大海捞针，需要怎样的硬件做支撑?">
-      在5000亿数据中大海捞针，需要怎样的硬件做支撑? <i class="fa fa-chevron-right"></i>
+    <a href="/2020/01/10/clickhouse-magic/" rel="prev" title="ClickHouse为何如此之快？">
+      <i class="fa fa-chevron-left"></i> ClickHouse为何如此之快？
     </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
